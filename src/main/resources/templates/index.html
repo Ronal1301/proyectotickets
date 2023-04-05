@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <meta charset="UTF-8" />
+        <title>Tickets</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}" />
+
+        <div class="container">
+            <!-- Reemplazar textos con idiomas -->
+            <h3 class="fw-bold text-center">[[#{index.nuestrosActividades}]]</h3>
+            <div class="row row-cols-2">
+                <div class="card" th:each="actividad : ${actividades}">
+                    <img th:src="${actividad.imagen}" height="361" class="container" />
+                    <div class="card-body">
+                        <h5 class="card-title">[[${actividad.descripcion}]]</h5>
+                        <h6 class="card-subtitle text-muted text-end">[[${actividad.precio}]]</h6>
+                        <a class="btn btn-primary" th:href="@{/carrito/comprar/ + ${actividad.idActividad}}">Comprar</a>
+                        <p class="card-text">[[${actividad.detalle}]]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="~{layout/plantilla :: footer}" />
+    </body>
+</html>
